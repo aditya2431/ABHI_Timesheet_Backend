@@ -26,7 +26,28 @@ public class User {
     
     private boolean isAdmin;
     
-    public boolean isAdmin() {
+    private String abhiManager;
+    
+    private String partnerManager;
+    
+
+	public String getAbhiManager() {
+		return abhiManager;
+	}
+
+	public void setAbhiManager(String abhiManager) {
+		this.abhiManager = abhiManager;
+	}
+
+	public String getPartnerManager() {
+		return partnerManager;
+	}
+
+	public void setPartnerManager(String partnerManager) {
+		this.partnerManager = partnerManager;
+	}
+
+	public boolean isAdmin() {
 		return isAdmin;
 	}
 

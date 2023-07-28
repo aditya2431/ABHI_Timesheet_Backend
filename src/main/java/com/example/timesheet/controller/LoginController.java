@@ -52,5 +52,15 @@ public class LoginController {
 		}
 		return result;
 	}
+	
+	@GetMapping("/findByAbhiManager/{id}")
+	public List<User> getRecordByAbhiManager(@PathVariable(value = "id") String abhiManager) {
+		return userRepository.findByabhiManager(abhiManager);
+	}
+	
+	@GetMapping("/findByPartnerManager/{id}")
+	public List<User> findByPartnerManager(@PathVariable(value = "id") String partnerManager) {
+		return userRepository.findByPartnerManager(partnerManager);
+	}
 
 }
