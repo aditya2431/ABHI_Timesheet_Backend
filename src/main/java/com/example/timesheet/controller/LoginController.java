@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,5 +63,21 @@ public class LoginController {
 	public List<User> findByPartnerManager(@PathVariable(value = "id") String partnerManager) {
 		return userRepository.findByPartnerManager(partnerManager);
 	}
+	
+	
+	@PutMapping("/passwordUpdate")
+    public ResponseEntity<User> updatePassword(@RequestBody User userDetails){
+    	  User user =  userRepository.findById(userDetails.getUserName())
+ 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userDetails.getUserName()));
+    	  user.setUserName(userDetails.getUserName());
+    	  user.setPassword(userDetails.getPassword());
+    	  
+    	 
+    	 User updatedUser = userRepository.save(user);
+    	 
+    	 return ResponseEntity.ok(updatedUser);
+    	 
+    	
+    }
 
 }

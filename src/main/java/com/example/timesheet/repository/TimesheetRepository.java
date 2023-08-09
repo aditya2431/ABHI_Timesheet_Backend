@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TimesheetRepository extends JpaRepository<Timesheet, Long> {
 	
-	public List<Timesheet> findByWbsCode(String wbsCode);
+//	public List<Timesheet> findByAbhiManager(String abhiManager);
 	public List<Timesheet> findByUserNameOrderByIdDesc(String userName);
 }

@@ -29,7 +29,9 @@ public class User {
     private String abhiManager;
     
     private String partnerManager;
-    
+   
+
+	
 
 	public String getAbhiManager() {
 		return abhiManager;
