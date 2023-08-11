@@ -14,4 +14,6 @@ public interface TimesheetRepository extends JpaRepository<Timesheet, Long> {
 	
 //	public List<Timesheet> findByAbhiManager(String abhiManager);
 	public List<Timesheet> findByUserNameOrderByIdDesc(String userName);
+
+	public List<Timesheet> findByWbsCodeIn(List<String> wbsCode);
 }

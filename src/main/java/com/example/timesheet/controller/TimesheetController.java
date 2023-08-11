@@ -73,9 +73,12 @@ public class TimesheetController {
     	timesheetRepository.delete(timesheet);
     	Map<String,Boolean> response = new HashMap<>();
     	response.put("deleted", Boolean.TRUE);
-    	return ResponseEntity.ok(response);
-    	
-    	
+    	return ResponseEntity.ok(response);	
+    }
+    
+    @GetMapping("/timesheetByWBSCode/{wbsCode}")
+    public List<Timesheet> getRecordByWBSCode(@PathVariable(value = "wbsCode") List<String> wbsCode) {
+        return timesheetRepository.findByWbsCodeIn(wbsCode);
     }
     
 }
