@@ -1,11 +1,16 @@
 package com.example.timesheet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 
 @Entity
@@ -14,6 +19,7 @@ import java.util.Date;
 //@JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)
 @JsonIgnoreProperties(allowGetters = true)
 public class Timesheet {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,8 +33,8 @@ public class Timesheet {
     @NotBlank
     private String wbsCode;
 
-    @NotBlank
-    private String createdAt;
+    @NotNull
+    private Date createdAt;
 
     @NotBlank
     private String bookedEfforts;
@@ -88,11 +94,11 @@ public class Timesheet {
     }
 
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(String createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 

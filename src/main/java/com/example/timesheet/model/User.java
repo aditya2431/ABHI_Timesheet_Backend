@@ -17,20 +17,17 @@ public class User {
 	@Id
     @NotBlank
     private String userName;
-
 	@NotBlank
     private String emailId;
-
     @NotBlank
     private String password;
-    
     private boolean isAdmin;
-    
+    @NotBlank
     private String abhiManager;
+    @NotBlank
+    private String abhiManagerName;
     
     private String partnerManager;
-   
-
 	
 
 	public String getAbhiManager() {
@@ -79,6 +76,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getAbhiManagerName() {
+		return abhiManagerName;
+	}
+
+	public void setAbhiManagerName(String abhiManagerName) {
+		this.abhiManagerName = abhiManagerName;
 	}
 
 }
