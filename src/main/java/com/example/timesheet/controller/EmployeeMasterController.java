@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,8 @@ import com.example.timesheet.service.EmployeeMasterService;
 @RestController
 @RequestMapping("/api")
 public class EmployeeMasterController {
+	
+	private static final Logger logger = LogManager.getLogger(EmployeeMasterController.class);
 
 	@Autowired
 	EmployeeMasterRepository employeeMasterRepository;
@@ -59,41 +63,41 @@ public class EmployeeMasterController {
 	
 	@GetMapping({ "/fetchUserRegistrationData" })
 	public List<AdminDashboardResponse> fetchUserRegistrationData() {
-		System.out.println("Inside EmployeeMasterController fetchUserRegistrationData() method");
+		logger.info("Inside EmployeeMasterController fetchUserRegistrationData() method");
 		return employeeMasterService.fetchUserRegistrationData();
 	}
 	
 	@GetMapping({ "/getDateWiseTimesheetData/{date}" })
 	public List<AdminDashboardResponse> getDateWiseTimesheetData(@PathVariable(value = "date") String fromDate) {
-		System.out.println("Inside EmployeeMasterController fetchUserRegistrationData() method");
+		logger.info("Inside EmployeeMasterController fetchUserRegistrationData() method");
 		return employeeMasterService.fetchDateWiseTimesheetData(fromDate);
 	}
 	@GetMapping({ "/getManagerWiseTimesheetData/{manager}/{fromDate}/{toDate}" })
 	public List<ManagerDashboardResponse> getManagerWiseTimesheetData(@PathVariable(value = "manager") String manager,
 			@PathVariable(value = "fromDate") String fromDate, @PathVariable(value = "toDate") String toDate) {
-		System.out.println("Inside EmployeeMasterController fetchManagerRegistrationData() method");
+		logger.info("Inside EmployeeMasterController fetchManagerRegistrationData() method");
 		return employeeMasterService.fetchManagerWiseTimesheetData(manager,fromDate,toDate);
 	}
 	
 	@GetMapping({ "/getUserDashboard/{name}" })
 	public List<UserDashboardResponse> getUserDashboard(@PathVariable(value = "name") String name) {
-		System.out.println("Inside EmployeeMasterController fetchUserDashboard() method");
+		logger.info("Inside EmployeeMasterController fetchUserDashboard() method");
 		return employeeMasterService.fetchUserDashboard(name);
 	}
 	
 	@GetMapping({ "/getTotalTime/{name}" })
 	public List<GetTimeResponse> getTotalTime(@PathVariable(value = "name") String name) {
-		System.out.println("Inside EmployeeMasterController getTotalTime() method");
+		logger.info("Inside EmployeeMasterController getTotalTime() method");
 		return employeeMasterService.getTotalTime(name);
 	}
 	@GetMapping({ "/getMissingDate/{name}" })
 	public List<MissingDatesResponse> getMissingDate(@PathVariable(value = "name") String name) {
-		System.out.println("Inside EmployeeMasterController getMissingDate() method");
+		logger.info("Inside EmployeeMasterController getMissingDate() method");
 		return employeeMasterService.getMissingDates(name);
 	}
 	@GetMapping({ "/getYesterdayTimesheet/{name}" })
 	public List<UserNameAndYesterdayResponse> getYesterdayTimesheet(@PathVariable(value = "name") String name) {
-		System.out.println("Inside EmployeeMasterController getMissingDate() method");
+		logger.info("Inside EmployeeMasterController getMissingDate() method");
 		return employeeMasterService.getYesterdayTimesheet(name);
 	}
 }

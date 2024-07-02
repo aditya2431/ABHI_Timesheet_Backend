@@ -3,6 +3,9 @@ package com.example.timesheet.controller;
 import com.example.timesheet.exception.ResourceNotFoundException;
 import com.example.timesheet.model.Timesheet;
 import com.example.timesheet.repository.TimesheetRepository;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class TimesheetController {
+	
+	private static final Logger logger = LogManager.getLogger(TimesheetController.class);
 
 	@Autowired
 	TimesheetRepository timesheetRepository;
@@ -27,6 +32,7 @@ public class TimesheetController {
 
 	@PostMapping("/timesheet")
 	public List<Timesheet>createRecord(@Valid @RequestBody List<Timesheet> timesheet) {
+		logger.info("Inside timesheet controller createRecord() method");
 		return timesheetRepository.saveAll(timesheet);
 	}
 
@@ -49,6 +55,7 @@ public class TimesheetController {
 	@PutMapping("/timesheetUpdate/{id}")
 	public ResponseEntity<Timesheet> updateTimesheet(@PathVariable(value = "id") Long timesheetId,
 			@RequestBody Timesheet timesheetDetails) {
+		logger.info("Inside timesheet controller updateTimesheet() method");
 		Timesheet timesheet = timesheetRepository.findById(timesheetId)
 				.orElseThrow(() -> new ResourceNotFoundException("Timesheet", "id", timesheetId));
 		timesheet.setUserName(timesheetDetails.getUserName());
