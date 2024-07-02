@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.timesheet.exception.ResourceNotFoundException;
 import com.example.timesheet.model.EmployeeMaster;
 import com.example.timesheet.pojo.AdminDashboardResponse;
+import com.example.timesheet.pojo.GetTimeResponse;
+import com.example.timesheet.pojo.ManagerDashboardResponse;
+import com.example.timesheet.pojo.MissingDatesResponse;
+import com.example.timesheet.pojo.UserDashboardResponse;
+import com.example.timesheet.pojo.UserNameAndYesterdayResponse;
 import com.example.timesheet.repository.EmployeeMasterRepository;
 import com.example.timesheet.service.EmployeeMasterService;
 
@@ -62,5 +67,33 @@ public class EmployeeMasterController {
 	public List<AdminDashboardResponse> getDateWiseTimesheetData(@PathVariable(value = "date") String fromDate) {
 		System.out.println("Inside EmployeeMasterController fetchUserRegistrationData() method");
 		return employeeMasterService.fetchDateWiseTimesheetData(fromDate);
+	}
+	@GetMapping({ "/getManagerWiseTimesheetData/{manager}/{fromDate}/{toDate}" })
+	public List<ManagerDashboardResponse> getManagerWiseTimesheetData(@PathVariable(value = "manager") String manager,
+			@PathVariable(value = "fromDate") String fromDate, @PathVariable(value = "toDate") String toDate) {
+		System.out.println("Inside EmployeeMasterController fetchManagerRegistrationData() method");
+		return employeeMasterService.fetchManagerWiseTimesheetData(manager,fromDate,toDate);
+	}
+	
+	@GetMapping({ "/getUserDashboard/{name}" })
+	public List<UserDashboardResponse> getUserDashboard(@PathVariable(value = "name") String name) {
+		System.out.println("Inside EmployeeMasterController fetchUserDashboard() method");
+		return employeeMasterService.fetchUserDashboard(name);
+	}
+	
+	@GetMapping({ "/getTotalTime/{name}" })
+	public List<GetTimeResponse> getTotalTime(@PathVariable(value = "name") String name) {
+		System.out.println("Inside EmployeeMasterController getTotalTime() method");
+		return employeeMasterService.getTotalTime(name);
+	}
+	@GetMapping({ "/getMissingDate/{name}" })
+	public List<MissingDatesResponse> getMissingDate(@PathVariable(value = "name") String name) {
+		System.out.println("Inside EmployeeMasterController getMissingDate() method");
+		return employeeMasterService.getMissingDates(name);
+	}
+	@GetMapping({ "/getYesterdayTimesheet/{name}" })
+	public List<UserNameAndYesterdayResponse> getYesterdayTimesheet(@PathVariable(value = "name") String name) {
+		System.out.println("Inside EmployeeMasterController getMissingDate() method");
+		return employeeMasterService.getYesterdayTimesheet(name);
 	}
 }

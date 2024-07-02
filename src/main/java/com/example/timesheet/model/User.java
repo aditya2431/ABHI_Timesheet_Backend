@@ -22,6 +22,7 @@ public class User {
     @NotBlank
     private String password;
     private boolean isAdmin;
+    private boolean isManager;
     @NotBlank
     private String abhiManager;
     @NotBlank
@@ -85,5 +86,14 @@ public class User {
 	public void setAbhiManagerName(String abhiManagerName) {
 		this.abhiManagerName = abhiManagerName;
 	}
+
+	public boolean isManager() {
+		return isManager;
+	}
+
+	public void setManager(boolean isManager) {
+		this.isManager = isManager;
+	}
+	
 
 }

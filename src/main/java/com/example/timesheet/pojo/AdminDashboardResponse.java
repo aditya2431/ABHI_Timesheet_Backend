@@ -8,6 +8,7 @@ public class AdminDashboardResponse {
 	public String smtManager;
 	public boolean isOnroll;
 	
+	
 	public String getUserId() {
 		return userId;
 	}

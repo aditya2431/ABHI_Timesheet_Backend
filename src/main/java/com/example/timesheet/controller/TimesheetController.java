@@ -26,8 +26,8 @@ public class TimesheetController {
 	}
 
 	@PostMapping("/timesheet")
-	public Timesheet createRecord(@Valid @RequestBody Timesheet timesheet) {
-		return timesheetRepository.save(timesheet);
+	public List<Timesheet>createRecord(@Valid @RequestBody List<Timesheet> timesheet) {
+		return timesheetRepository.saveAll(timesheet);
 	}
 
 	@GetMapping("/timesheet/{id}")
