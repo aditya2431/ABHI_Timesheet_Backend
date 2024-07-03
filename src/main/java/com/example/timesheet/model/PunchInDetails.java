@@ -25,7 +25,7 @@ public class PunchInDetails {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int SeqNo;
-	@NotBlank
+	
 	private String userName;
 	@NotBlank
 	private String userId;

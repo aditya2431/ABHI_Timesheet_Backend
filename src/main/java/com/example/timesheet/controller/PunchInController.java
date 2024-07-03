@@ -2,7 +2,10 @@ package com.example.timesheet.controller;
 
 import com.example.timesheet.exception.ResourceNotFoundException;
 import com.example.timesheet.model.PunchInDetails;
+import com.example.timesheet.pojo.PunchInSumResponse;
 import com.example.timesheet.repository.PunchInRepository;
+import com.example.timesheet.service.PunchInTimeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,8 @@ public class PunchInController {
 
 	@Autowired
 	PunchInRepository punchInRepository;
+    @Autowired
+    private PunchInTimeService punchInTimeService;
 
 	@GetMapping("/getAllPunchInRecords")
 	public List<PunchInDetails> getAllRecords() {
@@ -41,4 +46,8 @@ public class PunchInController {
 			@PathVariable(value = "punchInTime") String punchInTime) {
 		return punchInRepository.findByUserIdAndPunchInTime(userId, punchInTime);
 	}
+	@GetMapping("/punchInSum")
+    public List<PunchInSumResponse> getPunchInSummaryForToday() {
+        return punchInTimeService.getPunchinSummaryForToday();
+    }
 }

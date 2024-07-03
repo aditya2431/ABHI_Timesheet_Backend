@@ -32,7 +32,7 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster, 
 			+ "order by a.isonroll, b.createdAt desc")
 	public List<Object[]> getManagerWiseTimesheetData(String manager, String fromDate, String toDate);
 
-	@Query("select a.userName, a.category, sum(a.bookedEfforts) \r\n" + "from Timesheet a \r\n"
+	@Query(value = "select a.userName, a.category, sum(a.bookedEfforts) \r\n" + "from Timesheet a \r\n"
 			+ "where a.userName = :name\r\n"
 			+ "and date_format(created_at,'%Y-%m-%d') between  date(:fromDate) and date(:toDate) \r\n"
 			+ "group by a.userName, a.category ")
