@@ -1,26 +1,27 @@
 package com.example.timesheet.service;
 
-import java.lang.System.Logger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.timesheet.pojo.PunchInSumResponse;
 import com.example.timesheet.repository.PunchInRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Service
 public class PunchInTimeService {
-//	private static final Logger logger = LoggerFactory.getLogger(PunchInTimeService.class);
+
+	private static final Logger logger = LogManager.getLogger(PunchInTimeService.class);
 
 	@Autowired
 	private PunchInRepository punchInRepository;
 
 	public List<PunchInSumResponse> getPunchinSummaryForToday() {
+		logger.info("Inside PunchInTimeService PunchInTimeService() method");
 		List<Object[]> result = null;
 		List<PunchInSumResponse> returnList = new ArrayList<PunchInSumResponse>();
 
@@ -33,16 +34,16 @@ public class PunchInTimeService {
 			if (result != null && result.size() > 0) {
 				result.stream().forEach(record -> {
 					PunchInSumResponse response = new PunchInSumResponse();
-					response.setCount9To10((String) record[0]);
-					response.setCount10To11((String) record[1]);
-					response.setCountAfter11((String) record[2]);
+					response.setCount9To10((BigDecimal) record[0]);
+					response.setCount10To11((BigDecimal) record[1]);
+					response.setCountAfter11((BigDecimal) record[2]);
 					returnList.add(response);
 				});
 			}
 		} catch (Exception e) {
-			// Optionally, you might want to throw or handle the exception
+			logger.info("Some error occured while fetching getPunchinSummaryForToday records");
+			logger.info(e.getMessage());
 		}
-
 		return returnList;
 	}
 }
