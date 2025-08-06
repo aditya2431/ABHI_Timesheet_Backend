@@ -75,6 +75,11 @@
 			<version>2.20.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.abhi.empanelment</groupId>
+			<artifactId>abhi_empanelment</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
